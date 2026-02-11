@@ -42,7 +42,7 @@ import com.example.carpetwashing.presentation.navigation.Screen
 
 import com.example.carpetwashing.presentation.component.ButtonStyle
 import com.example.carpetwashing.presentation.screen.register.RegisterScreenViewModel
-import com.example.carpetwashing.domain.Result
+import com.example.carpetwashing.domain.util.Result
 
 @Composable
 fun RegisterScreen(

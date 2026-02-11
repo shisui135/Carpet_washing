@@ -1,4 +1,4 @@
-package com.example.carpetwashing.domain
+package com.example.carpetwashing.domain.util
 
 sealed interface Result {
     data class Success<T>(val msg: String = "", val data: T? = null): Result

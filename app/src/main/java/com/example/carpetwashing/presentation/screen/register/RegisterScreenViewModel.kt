@@ -25,9 +25,9 @@ class RegisterScreenViewModel @Inject constructor(
 
     fun onEvent(event: RegisterScreenEvent) {
         when (event) {
+            is RegisterScreenEvent.UsernameUpdated -> onUsernameUpdated(event.newUsername)
             is RegisterScreenEvent.EmailUpdated -> onEmailUpdated(event.newEmail)
             is RegisterScreenEvent.PasswordUpdated -> onPasswordUpdated(event.newPassword)
-            is RegisterScreenEvent.UsernameUpdated -> onUsernameUpdated(event.newUsername)
             is RegisterScreenEvent.RegisterBtnClicked -> register()
         }
     }
@@ -39,7 +39,7 @@ class RegisterScreenViewModel @Inject constructor(
         _state.update { it.copy(password = newPassword) }
     }
     private fun onUsernameUpdated(newUsername: String) {
-        _state.update { it.copy(password = newUsername) }
+        _state.update { it.copy(username = newUsername) }
     }
     private fun register() = viewModelScope.launch(Dispatchers.IO)  {
         val username = state.value.username
@@ -47,7 +47,7 @@ class RegisterScreenViewModel @Inject constructor(
         val password = state.value.password
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) return@launch
 
-        val result = authRepository.register(username,email, password)
+        val result = authRepository.register(username = username,email = email, password = password)
         this@RegisterScreenViewModel._state.update { it.copy(registerResult = result) }
     }
 }

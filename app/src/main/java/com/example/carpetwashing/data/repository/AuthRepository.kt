@@ -2,7 +2,7 @@ package com.example.carpetwashing.data.repository
 
 import com.example.carpetwashing.domain.dao.UserDao
 import com.example.carpetwashing.domain.entity.User
-import com.example.carpetwashing.domain.Result
+import com.example.carpetwashing.domain.util.Result
 import java.util.UUID
 import javax.inject.Inject
 

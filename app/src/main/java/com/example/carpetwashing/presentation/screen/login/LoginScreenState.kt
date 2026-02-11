@@ -1,6 +1,6 @@
 package com.example.carpetwashing.presentation.screen.login
 
-import com.example.carpetwashing.domain.Result
+import com.example.carpetwashing.domain.util.Result
 
 sealed class LoginScreenEvent {
     data class EmailUpdated(val newEmail: String): LoginScreenEvent()

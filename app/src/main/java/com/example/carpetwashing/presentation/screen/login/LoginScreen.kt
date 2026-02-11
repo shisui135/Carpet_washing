@@ -40,7 +40,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.carpetwashing.R
 import com.example.carpetwashing.presentation.navigation.Screen
 import com.example.carpetwashing.presentation.component.ButtonStyle
-import com.example.carpetwashing.domain.Result
+import com.example.carpetwashing.domain.util.Result
 
 @Composable
 fun LoginScreen(

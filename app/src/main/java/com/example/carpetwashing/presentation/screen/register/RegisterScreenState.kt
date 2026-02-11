@@ -1,6 +1,6 @@
 package com.example.carpetwashing.presentation.screen.register
 
-import com.example.carpetwashing.domain.Result
+import com.example.carpetwashing.domain.util.Result
 
 sealed class RegisterScreenEvent {
     data class UsernameUpdated(val newUsername: String): RegisterScreenEvent()
