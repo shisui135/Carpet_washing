@@ -15,7 +15,6 @@ ksp = "2.1.0-1.0.29"
 hilt = "2.52"
 retrofit = "2.5.0"
 okhttp = "5.0.0"
-glide = "5.0.5"
 hiltNavigation = "1.2.0"
 
 
@@ -42,13 +41,13 @@ hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", ve
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room"}
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room"}
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room"}
-glide = {group = "com.github.bumptech.glide", name = "glide", version.ref = "glide"}
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization" }
 
 retrofit-converterJson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit"}
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp"}
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
+
 
 [plugins]
 

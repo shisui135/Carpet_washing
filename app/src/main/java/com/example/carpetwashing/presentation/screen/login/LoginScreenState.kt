@@ -10,5 +10,7 @@ sealed class LoginScreenEvent {
 data class LoginScreenState(
     val email: String = "",
     val password: String = "",
-    val loginResult: Result? = null
+    val loginResult: Result<Unit>? = null,
+    val isLoading: Boolean = false
 )
+

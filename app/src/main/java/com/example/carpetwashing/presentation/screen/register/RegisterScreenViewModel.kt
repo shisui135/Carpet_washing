@@ -41,13 +41,19 @@ class RegisterScreenViewModel @Inject constructor(
     private fun onUsernameUpdated(newUsername: String) {
         _state.update { it.copy(username = newUsername) }
     }
-    private fun register() = viewModelScope.launch(Dispatchers.IO)  {
+    private fun register() = viewModelScope.launch {
+        _state.update { it.copy(registerResult = null) } // очищаем прошлый результат
+
         val username = state.value.username
         val email = state.value.email
         val password = state.value.password
         if (username.isEmpty() || email.isEmpty() || password.isEmpty()) return@launch
 
-        val result = authRepository.register(username = username,email = email, password = password)
-        this@RegisterScreenViewModel._state.update { it.copy(registerResult = result) }
+        val result = kotlinx.coroutines.withContext(Dispatchers.IO) {
+            authRepository.register(username = username, email = email, password = password)
+        }
+
+        _state.update { it.copy(registerResult = result) }
     }
+
 }

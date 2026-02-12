@@ -71,6 +71,11 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     implementation(libs.androidx.compose.material.icons.extended)
 
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.datastore:datastore-preferences-core:1.0.0")
+
+
+
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.navigation.compose)
@@ -79,11 +84,12 @@ dependencies {
     implementation(libs.room.runtime)
     ksp(libs.androidx.room.compiler)
 
-    implementation(libs.glide)
-
     implementation(libs.retrofit)
+
     implementation(libs.retrofit.converterJson)
     implementation(libs.okhttp)
+
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
 
     implementation(libs.kotlinx.serialization)
     implementation(libs.androidx.navigation.compose)

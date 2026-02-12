@@ -9,9 +9,11 @@ sealed class RegisterScreenEvent {
     data object RegisterBtnClicked: RegisterScreenEvent()
 }
 
+
 data class RegisterScreenState(
     val username: String = "",
     val email: String = "",
     val password: String = "",
-    val registerResult: Result? = null
+    val registerResult: Result<Unit>? = null  // <- указываем Unit
 )
+

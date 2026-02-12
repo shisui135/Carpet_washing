@@ -1,6 +1,6 @@
 package com.example.carpetwashing.domain.util
 
-sealed interface Result {
-    data class Success<T>(val msg: String = "", val data: T? = null): Result
-    data class Failure<T>(val msg: String = "", val data: T? = null): Result
+sealed interface Result<out T> {
+    data class Success<out T>(val msg: String = "", val data: T? = null) : Result<T>
+    data class Failure<out T>(val msg: String = "", val data: T? = null) : Result<T>
 }
