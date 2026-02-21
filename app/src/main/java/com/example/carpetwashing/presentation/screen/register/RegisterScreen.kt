@@ -46,7 +46,7 @@ import com.example.carpetwashing.domain.util.Result
 
 @Composable
 fun RegisterScreen(
-    onNavigateTo: (Screen) -> Unit = {}
+    onNavigateTo: (String) -> Unit = {}
 ) {
     val viewModel = hiltViewModel<RegisterScreenViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -56,7 +56,7 @@ fun RegisterScreen(
         state.registerResult?.let { registerResult ->
             when (registerResult) {
                 is Result.Success<*> -> {
-                    onNavigateTo(Screen.Main)
+                    onNavigateTo(Screen.Login.route)
                 }
 
                 is Result.Failure<*> -> {
@@ -68,15 +68,15 @@ fun RegisterScreen(
     }
     RegisterView(
         state = state,
-        onEvent = viewModel::onEvent,
-        onNavigateTo = onNavigateTo
+        onNavigateTo = onNavigateTo,
+        onEvent = viewModel::onEvent
     )
 }
 
 @Composable
 fun RegisterView(
     modifier: Modifier = Modifier,
-    onNavigateTo: (Screen) -> Unit = {},
+    onNavigateTo: (String) -> Unit = {},
     state: RegisterScreenState = RegisterScreenState(),
     onEvent: (RegisterScreenEvent) -> Unit = {}
 ) {
@@ -232,7 +232,7 @@ fun RegisterView(
                             modifier = Modifier
                                 .padding(top = 7.dp)
                                 .clickable {
-                                    onNavigateTo(Screen.Login)
+                                    onNavigateTo(Screen.Login.route)
                                 }
                         )
                     }

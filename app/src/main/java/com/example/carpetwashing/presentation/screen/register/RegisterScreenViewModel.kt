@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.carpetwashing.data.repository.AuthRepository
+import com.example.carpetwashing.domain.util.Result
 import com.example.carpetwashing.presentation.screen.login.LoginScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterScreenViewModel @Inject constructor(
     private val authRepository: AuthRepository
-): ViewModel(){
+) : ViewModel() {
 
     private val _state = MutableStateFlow(RegisterScreenState())
     val state = _state.asStateFlow()
@@ -35,12 +36,15 @@ class RegisterScreenViewModel @Inject constructor(
     private fun onEmailUpdated(newEmail: String) {
         _state.update { it.copy(email = newEmail) }
     }
+
     private fun onPasswordUpdated(newPassword: String) {
         _state.update { it.copy(password = newPassword) }
     }
+
     private fun onUsernameUpdated(newUsername: String) {
         _state.update { it.copy(username = newUsername) }
     }
+
     private fun register() = viewModelScope.launch {
         _state.update { it.copy(registerResult = null) } // очищаем прошлый результат
 

@@ -44,7 +44,7 @@ import com.example.carpetwashing.domain.util.Result
 
 @Composable
 fun LoginScreen(
-    onNavigateTo: (Screen) -> Unit
+    onNavigateTo: (String) -> Unit
 ) {
     val viewModel = hiltViewModel<LoginScreenViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -54,7 +54,7 @@ fun LoginScreen(
         state.loginResult?.let { loginResult ->
             when (loginResult) {
                 is Result.Success<*> -> {
-                    onNavigateTo(Screen.Main)
+                    onNavigateTo(Screen.Main.route)
                 }
 
                 is Result.Failure<*> -> {
@@ -74,7 +74,7 @@ fun LoginScreen(
 @Composable
 fun LoginView(
     modifier: Modifier = Modifier,
-    onNavigateTo: (Screen) -> Unit = {},
+    onNavigateTo: (String) -> Unit = {},
     state: LoginScreenState = LoginScreenState(),
     onEvent: (LoginScreenEvent) -> Unit = {}
 ) {
@@ -219,7 +219,7 @@ fun LoginView(
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier
                                 .clickable {
-                                    onNavigateTo(Screen.Register)
+                                    onNavigateTo(Screen.Register.route)
                                 }
                         )
                     }
