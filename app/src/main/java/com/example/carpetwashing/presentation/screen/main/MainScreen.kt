@@ -13,6 +13,7 @@ import com.example.carpetwashing.presentation.screen.main.aboutUs.AboutUsScreen
 import com.example.carpetwashing.presentation.screen.main.navigation.BottomNavigationBar
 import com.example.carpetwashing.presentation.screen.main.navigation.MainScreenNavigationRoute
 import com.example.carpetwashing.presentation.screen.main.order.OrderScreen
+import com.example.carpetwashing.presentation.screen.main.order.orderdetails.OrderDetails
 import com.example.carpetwashing.presentation.screen.main.profile.ProfileScreen
 
 @Composable
@@ -42,6 +43,7 @@ fun MainScreen(
             composable<MainScreenNavigationRoute.Profile> {
                 ProfileScreen()
             }
+
         }
     }
 }

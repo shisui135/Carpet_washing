@@ -31,6 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -39,10 +40,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.carpetwashing.R
 import com.example.carpetwashing.presentation.navigation.Screen
-
 import com.example.carpetwashing.presentation.component.ButtonStyle
-import com.example.carpetwashing.presentation.screen.register.RegisterScreenViewModel
 import com.example.carpetwashing.domain.util.Result
+
 
 @Composable
 fun RegisterScreen(
@@ -80,6 +80,7 @@ fun RegisterView(
     state: RegisterScreenState = RegisterScreenState(),
     onEvent: (RegisterScreenEvent) -> Unit = {}
 ) {
+    val uriHandler = LocalUriHandler.current
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -251,14 +252,19 @@ fun RegisterView(
                     color = MaterialTheme.colorScheme.primary
                 )
                 Text(
-                    modifier = Modifier.padding(start = 90.dp, top = 100.dp),
+                    modifier = Modifier.padding(start = 90.dp, top = 100.dp).clickable {
+                        uriHandler.openUri("https://t.me/ne_mustafa_bogat")
+                    },
                     text = "Поддержка / ",
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.ExtraBold
                 )
                 Text(
-                    modifier = Modifier.padding(top = 100.dp),
+                    modifier = Modifier.padding(top = 100.dp)
+                        .clickable{
+                            uriHandler.openUri("https://stirkakovroving06.wixsite.com/website")
+                        },
                     text = "О нас",
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.primary,

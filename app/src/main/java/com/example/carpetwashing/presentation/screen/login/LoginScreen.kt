@@ -41,6 +41,7 @@ import com.example.carpetwashing.R
 import com.example.carpetwashing.presentation.navigation.Screen
 import com.example.carpetwashing.presentation.component.ButtonStyle
 import com.example.carpetwashing.domain.util.Result
+import androidx.compose.ui.platform.LocalUriHandler
 
 @Composable
 fun LoginScreen(
@@ -78,6 +79,7 @@ fun LoginView(
     state: LoginScreenState = LoginScreenState(),
     onEvent: (LoginScreenEvent) -> Unit = {}
 ) {
+    val uriHandler = LocalUriHandler.current
 
     Box(
         modifier = Modifier.fillMaxSize()
@@ -238,14 +240,19 @@ fun LoginView(
                     color = MaterialTheme.colorScheme.primary
                 )
                 Text(
-                    modifier = Modifier.padding(start = 90.dp, top = 130.dp),
+                    modifier = Modifier.padding(start = 90.dp, top = 130.dp).clickable {
+                        uriHandler.openUri("https://t.me/ne_mustafa_bogat")
+                    },
                     text = "Поддержка / ",
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.ExtraBold
                 )
                 Text(
-                    modifier = Modifier.padding(top = 130.dp),
+                    modifier = Modifier.padding(top = 130.dp)
+                        .clickable{
+                            uriHandler.openUri("https://stirkakovroving06.wixsite.com/website")
+                        },
                     text = "О нас",
                     fontSize = 12.sp,
                     color = MaterialTheme.colorScheme.primary,

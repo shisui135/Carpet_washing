@@ -3,6 +3,10 @@ package com.example.carpetwashing.presentation.screen.main.navigation
 import kotlinx.serialization.Serializable
 
 sealed interface MainScreenNavigationRoute {
+
+    @Serializable
+    data object OrderDetails: MainScreenNavigationRoute
+
     @Serializable
     data object AboutUs: MainScreenNavigationRoute
 

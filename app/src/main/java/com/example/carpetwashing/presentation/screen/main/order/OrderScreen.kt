@@ -1,6 +1,7 @@
 package com.example.carpetwashing.presentation.screen.main.order
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,11 +25,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.carpetwashing.R
 import com.example.carpetwashing.presentation.component.ButtonStyle
+import com.example.carpetwashing.presentation.navigation.Screen
 import com.example.carpetwashing.presentation.screen.login.LoginScreenEvent
+import com.example.carpetwashing.presentation.screen.main.navigation.MainScreenNavigationRoute
 
 @Composable
 fun OrderScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = Modifier.fillMaxSize()
@@ -65,55 +68,32 @@ fun OrderScreen(
                 modifier = modifier
                     .padding(bottom = 10.dp, start = 10.dp, end = 10.dp)
                     .weight(1f)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .border(
+                        3.dp,
+                        MaterialTheme.colorScheme.onTertiaryContainer,
+                        RoundedCornerShape(24.dp)
+                    ),
                 shape = RoundedCornerShape(24.dp),
-                color = MaterialTheme.colorScheme.primaryContainer
-            ) {
-                Row() {
-                    Column(
-                    modifier = modifier
-                        .weight(1f)
-                        .fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                color = MaterialTheme.colorScheme.tertiaryContainer,
+
+
                 ) {
-                        Text(
-                            modifier = modifier.padding(top = 20.dp, start = 10.dp),
-                            text = "Нет заказов",
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            color = MaterialTheme.colorScheme.onTertiary
-                        )
-                        ButtonStyle(
-                            onClick = {},
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 50.dp, start = 10.dp)
-                        ) {
-                            Text(
-                                text = "Подробее",
-                                maxLines = 1,
-                                softWrap = false,
-                                fontSize = 16.sp,
-                                color = MaterialTheme.colorScheme.primaryContainer
-                            )
-                        }
-                    }
-                    Column(
-                        modifier = modifier
-                            .weight(1f)
-                            .fillMaxSize()
-                    ) {
-                        Image(
-                            modifier = modifier.padding(top = 20.dp)
-                                .size(250.dp),
-                            painter = painterResource(id = R.drawable.gazel_false),
-                            contentDescription = "Gazel false"
-                        )
-                    }
+                Column(
+                    modifier = modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Нет заказов..",
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.onTertiary
+                    )
                 }
 
-
             }
+
             Surface(
                 modifier = modifier
                     .padding(bottom = 10.dp, start = 10.dp, end = 10.dp)
@@ -122,8 +102,15 @@ fun OrderScreen(
                 shape = RoundedCornerShape(24.dp),
                 color = MaterialTheme.colorScheme.primaryContainer
             ) {
-
+                ButtonStyle(
+                    onClick = {}
+                ) {
+                    Text(
+                        text = "Заказать"
+                    )
+                }
             }
+
         }
     }
 }
