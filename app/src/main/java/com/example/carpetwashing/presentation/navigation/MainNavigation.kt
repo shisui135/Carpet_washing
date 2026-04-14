@@ -25,68 +25,58 @@ import com.example.carpetwashing.presentation.screen.main.MainScreen
 import com.example.carpetwashing.presentation.screen.register.RegisterScreen
 import kotlinx.serialization.Serializable
 
-sealed class Screen(val route: String) {
-    object Login : Screen("login")
-    object Register : Screen("register")
-    object Main : Screen("main")
+
+@Serializable
+sealed class Screen {
+    @Serializable
+    object Login : Screen()
+    @Serializable
+    object Register : Screen()
+    @Serializable
+    object Main : Screen()
 }
 
 
 @Composable
 fun MainNav(
     modifier: Modifier = Modifier,
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    isLoggedIn: Boolean
 ) {
-    val loginViewModel: LoginScreenViewModel = hiltViewModel()
-    val isLoggedIn by loginViewModel.isLoggedInFlow.collectAsState(initial = null)
-
-    if (isLoggedIn == null) {
-        SplashScreen()
-        return
-    }
-
-    val startDestination = if (isLoggedIn == true) {
-        Screen.Main.route
-    } else {
-        Screen.Login.route
-    }
-
     NavHost(
-        modifier = modifier,
         navController = navHostController,
-        startDestination = startDestination
+        startDestination = if (isLoggedIn) Screen.Main else Screen.Login // Теперь передаем объекты
     ) {
-        composable(Screen.Login.route) {
+        composable<Screen.Login> { // Тип указывается в угловых скобках
             LoginScreen(onNavigateTo = { navHostController.navigate(it) })
         }
-
-        composable(Screen.Register.route) {
+        composable<Screen.Register> {
             RegisterScreen(onNavigateTo = { navHostController.navigate(it) })
         }
-
-        composable(Screen.Main.route) {
+        composable<Screen.Main> {
             MainScreen(onNavigateTo = { navHostController.navigate(it) })
         }
     }
-}
 
 
-@Composable
-fun SplashScreen() {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.logo_image),
-            contentDescription = "CarpetWashing login image"
-        )
-        Text(
-            text = "Загрузка...",
-            fontSize = 20.sp,
-            color = MaterialTheme.colorScheme.primary
-        )
+
+    @Composable
+    fun SplashScreen() {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.logo_image),
+                contentDescription = "CarpetWashing login image"
+            )
+            Text(
+                text = "Загрузка...",
+                fontSize = 20.sp,
+                color = MaterialTheme.colorScheme.primary
+            )
+        }
     }
 }
 

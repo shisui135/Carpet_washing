@@ -40,13 +40,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.carpetwashing.R
 import com.example.carpetwashing.presentation.navigation.Screen
-import com.example.carpetwashing.presentation.component.ButtonStyle
+import com.example.carpetwashing.presentation.ui.component.ButtonStyle
 import com.example.carpetwashing.domain.util.Result
 
 
 @Composable
 fun RegisterScreen(
-    onNavigateTo: (String) -> Unit = {}
+    onNavigateTo: (Screen) -> Unit = {}
 ) {
     val viewModel = hiltViewModel<RegisterScreenViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -56,7 +56,7 @@ fun RegisterScreen(
         state.registerResult?.let { registerResult ->
             when (registerResult) {
                 is Result.Success<*> -> {
-                    onNavigateTo(Screen.Login.route)
+                    onNavigateTo(Screen.Login)
                 }
 
                 is Result.Failure<*> -> {
@@ -76,7 +76,7 @@ fun RegisterScreen(
 @Composable
 fun RegisterView(
     modifier: Modifier = Modifier,
-    onNavigateTo: (String) -> Unit = {},
+    onNavigateTo: (Screen) -> Unit = {},
     state: RegisterScreenState = RegisterScreenState(),
     onEvent: (RegisterScreenEvent) -> Unit = {}
 ) {
@@ -233,7 +233,7 @@ fun RegisterView(
                             modifier = Modifier
                                 .padding(top = 7.dp)
                                 .clickable {
-                                    onNavigateTo(Screen.Login.route)
+                                    onNavigateTo(Screen.Login)
                                 }
                         )
                     }

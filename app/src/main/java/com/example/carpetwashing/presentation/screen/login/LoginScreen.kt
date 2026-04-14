@@ -39,13 +39,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.carpetwashing.R
 import com.example.carpetwashing.presentation.navigation.Screen
-import com.example.carpetwashing.presentation.component.ButtonStyle
+import com.example.carpetwashing.presentation.ui.component.ButtonStyle
 import com.example.carpetwashing.domain.util.Result
 import androidx.compose.ui.platform.LocalUriHandler
 
 @Composable
 fun LoginScreen(
-    onNavigateTo: (String) -> Unit
+    onNavigateTo: (Screen) -> Unit
 ) {
     val viewModel = hiltViewModel<LoginScreenViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -55,7 +55,7 @@ fun LoginScreen(
         state.loginResult?.let { loginResult ->
             when (loginResult) {
                 is Result.Success<*> -> {
-                    onNavigateTo(Screen.Main.route)
+                    onNavigateTo(Screen.Main)
                 }
 
                 is Result.Failure<*> -> {
@@ -75,7 +75,7 @@ fun LoginScreen(
 @Composable
 fun LoginView(
     modifier: Modifier = Modifier,
-    onNavigateTo: (String) -> Unit = {},
+    onNavigateTo: (Screen) -> Unit = {},
     state: LoginScreenState = LoginScreenState(),
     onEvent: (LoginScreenEvent) -> Unit = {}
 ) {
@@ -221,7 +221,7 @@ fun LoginView(
                             fontWeight = FontWeight.Bold,
                             modifier = Modifier
                                 .clickable {
-                                    onNavigateTo(Screen.Register.route)
+                                    onNavigateTo(Screen.Register)
                                 }
                         )
                     }

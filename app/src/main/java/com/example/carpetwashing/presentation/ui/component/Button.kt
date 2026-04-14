@@ -1,4 +1,4 @@
-package com.example.carpetwashing.presentation.component
+package com.example.carpetwashing.presentation.ui.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,7 +24,7 @@ fun ButtonStyle(
     Button(
         modifier = modifier,
         onClick = onClick,
-        shape = RoundedCornerShape(10.dp),
+        shape = RoundedCornerShape(15.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = MaterialTheme.colorScheme.secondaryContainer
         ),

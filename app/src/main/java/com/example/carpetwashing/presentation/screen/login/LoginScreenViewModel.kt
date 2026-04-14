@@ -22,14 +22,6 @@ class LoginScreenViewModel @Inject constructor(
     private val _state = MutableStateFlow(LoginScreenState())
     val state = _state.asStateFlow()
 
-    val isLoggedInFlow = authRepository.isLoggedInFlow
-
-    fun onLoginSuccess() {
-        viewModelScope.launch {
-            authRepository.setLoggedIn(true)
-        }
-    }
-
     fun onEvent(event: LoginScreenEvent) {
         when (event) {
             is LoginScreenEvent.EmailUpdated -> onEmailUpdated(event.newEmail)
@@ -60,9 +52,6 @@ class LoginScreenViewModel @Inject constructor(
 
             _state.update { it.copy(loginResult = result, isLoading = false) }
 
-            if (result is Result.Success) {
-                authRepository.setLoggedIn(true)
-            }
         }
     }
 

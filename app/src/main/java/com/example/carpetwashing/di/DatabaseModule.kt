@@ -1,4 +1,4 @@
-package com.example.carpetwashing.presentation.di
+package com.example.carpetwashing.di
 
 import android.content.Context
 import androidx.room.Room
